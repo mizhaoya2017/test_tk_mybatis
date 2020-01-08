@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--<context id="MYSQLTables" targetRuntime="MyBatis3">-->
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!--tk.mybatis必备-->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+            <property name="caseSensitive" value="false"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.144.225.168:3306/dev?useUnicode=true&amp;characterEncoding=utf-8"
+                        userId="root"
+                        password="Mi18734157434">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.mzy.test_tk_mybatis.model"
+                            targetProject="src/main/java"/>
+
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="com.mzy.test_tk_mybatis.mapper"
+                             targetProject="src/main/java" type="XMLMAPPER"/>
+
+        <!--代码自动生成-->
+        <!--<table schema="lms" tableName="sys_org_email" domainObjectName="OrgEmail">-->
+        <!--<property name="useActualColumnNames" value="false"/>-->
+        <!--<generatedKey column="id" sqlStatement="mysql" identity="true"/>-->
+        <!--</table>-->
+        <table schema="activity" tableName="test">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="mysql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>
